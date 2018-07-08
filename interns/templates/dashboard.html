@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+ Welcome to our site
+
+{% endblock %}
+
+{% block header %}
+
+{% include "header.html" %}
+
+{% endblock %}
+
+{% block content %}
+
+<!-- Slideshow container -->
+<div class="slideshow-container">
+
+  <!-- Full-width images with number and caption text -->
+  <div class="mySlides fade">
+    <div class="numbertext"></div>
+    <img src="/static/images/Ketraco.png" style="width:100%">
+    <div class="text"></div>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext"></div>
+    <img src="/static/images/banner.jpg" style="width:100%">
+    <div class="text"></div>
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext"></div>
+    <img src="/static/images/ketraco_logo.jpg" style="width:100%">
+    <div class="text"></div>
+  </div>
+
+
+<br>
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+</div>
+
+<script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}
+    slides[slideIndex-1].style.display = "block";
+    setTimeout(showSlides, 3000); // Change image every 2 seconds
+}
+</script>
+
+<div class="w3-container">
+<p>Copyright © 2016 PDTP Secretariat- ICT Authority. All rights reserved.</p>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+
+{% include "footer.html" %}
+
+{% endblock %}

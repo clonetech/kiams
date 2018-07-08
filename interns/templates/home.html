@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<!-- Sidebar -->
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
+  <img src="/static/images/Ketraco.png" style="width:100%">
+  <a href="#" class="w3-bar-item w3-button">Traing Materials</a>
+  <a href="#" class="w3-bar-item w3-button">Reports</a>
+  <a href="#" class="w3-bar-item w3-button">Evaluation</a>
+  <a href="#" class="w3-bar-item w3-button">Deployment</a>
+  <a href="#" class="w3-bar-item w3-button">Raise an Issue</a>
+</div>
+
+<!-- Page Content -->
+<div style="margin-left:15%" style='color: #FA0319' >
+
+<div class="w3-container w3-teal">
+  <a style='color: #FA0319' align = 'right' href="{% url 'interns:logout' %}">LOG OUT</a>
+  <h1>KIAMS PORTAL</h1>
+</div>
+
+<h1> News Feed </h1>
+<p> *Current Ketraco Projects </p>
+<p> *Recent Accomplishment </p>
+<p> *Updates </p>
+
+<div class="w3-container">
+<p>Copyright © 2016 PDTP Secretariat- ICT Authority. All rights reserved.</p>
+</div>
+
+</div>
+
+
+{% else %}
+
+  <p>You are not logged in</p>
+
+  <a href="{% url 'login' %}">login</a>
+
+{% endif %}
+
+{% endblock %}
+
+{% block footer %}
+
+{% include "footer.html" %}
+
+{% endblock %}

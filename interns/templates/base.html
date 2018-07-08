@@ -1,0 +1,46 @@
+{% load static %}
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<html>
+
+<head>
+
+  <title>
+
+  {% block title %}
+
+  {% endblock %}
+
+</title>
+
+</head>
+
+<body>
+
+{% block header %}
+
+{% endblock %}
+
+{% block over_view_contact %}
+
+{% endblock %}
+
+<div style="background-color: Cornsilk ;" align = "center">
+
+{% block content %}
+
+{% endblock %}
+
+</div>
+
+{% block footer %}
+
+{% endblock %}
+
+</body>
+
+
+</html>
