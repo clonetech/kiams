@@ -25,7 +25,7 @@ SECRET_KEY = 't9@yl--t20-d3f81e)=zgsjmh_go6rd0b^li(_%eu*9qwzhq6g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['kiams.herokuapp.com']
 
 
 # Application definition
