@@ -9,21 +9,29 @@
 {% if user.is_authenticated %}
 
 <!-- Sidebar -->
-<div class="w3-sidebar w3-grey w3-bar-block" style="width:15%">
-  <img src="/static/images/Ketraco.png" style="width:100%">
-  <a href="#" class="w3-bar-item w3-button">Traing Materials</a>
-  <a href="#" class="w3-bar-item w3-button">Reports</a>
-  <a href="#" class="w3-bar-item w3-button">Evaluation</a>
-  <a href="#" class="w3-bar-item w3-button">Deployment</a>
+  <div class="w3-sidebar w3-bar-block" style="width: 15%">
+  <img src="/static/images/Ketraco.png" style="width:90%">
+  <div class="w3-dropdown-hover">
+    <button class="w3-button">Training Materials <i class="fa fa-caret-down"></i></button>
+    <div class="w3-dropdown-content w3-bar-block">
+      <a href="#" class="w3-bar-item w3-button" style='color: #FA0319'>Video Tutorials</a>
+      <a href="#" class="w3-bar-item w3-button" style='color: #FA0319'>Documentations</a>
+    </div>
+  </div>
+    <a href="#" class="w3-bar-item w3-button">Reports</a>
+    <a href="#" class="w3-bar-item w3-button">Evaluation</a>
+  <a href="#" class="w3-bar-item w3-button">Deployment and Location</a>
   <a href="#" class="w3-bar-item w3-button">Raise an Issue</a>
-</div>
+  </div>
 
 <!-- Page Content -->
 <div style="margin-left:15%" style='color: #FA0319' >
-
 <div class="w3-container w3-green">
-  <a style='color: #FA0319' align = 'right' href="{% url 'interns:logout' %}">LOG OUT</a>
   <h1>KIAMS PORTAL</h1>
+  <div style='color: white' align = "right">  Welcome {{ user.username }}
+<br>
+  <a style='color: #FA0319' align = 'right' href="{% url 'interns:logout' %}">Sign Out</a>
+</div>
 </div>
 
 <h1> News Feed </h1>

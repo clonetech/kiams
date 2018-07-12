@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 't9@yl--t20-d3f81e)=zgsjmh_go6r
 #DEBUG = True
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = ['kiams.herokuapp.com']
+ALLOWED_HOSTS = ['kiams.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'interns',
+
 ]
 
 MIDDLEWARE = [
