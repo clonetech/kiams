@@ -34,6 +34,25 @@
 </div>
 </div>
 
+<div class="w3-sidebar w3-bar-block w3-gray" style="width:100px;right:0" id="mySidebar">
+  <button class="w3-bar-item w3-button w3-hide-large"
+  onclick="w3_close()">Close &times;</button>
+  <a href="#" class="w3-bar-item w3-button">Contacts</a>
+</div>
+
+
+
+</div>
+
+<script>
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+}
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+</script>
+
 <h1> News Feed </h1>
 <p> *Current Ketraco Projects </p>
 <p> *Recent Accomplishment </p>
