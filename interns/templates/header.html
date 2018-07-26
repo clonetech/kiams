@@ -1,14 +1,29 @@
 {% extends "base.html" %}
 {% block header %}
-<ul>
-  <div class="w3-container w3-green">
-  <div style="color:white" align = "left"><h4><img src="/static/images/ketraco_logo.jpg" alt="logo" style="width:90px; max-height: 130px" /></h4></div>
+<!DOCTYPE html>
+<html lang="en">
 
-  <li style="float:right"><a href="/login/"> Login </a></li>
-  <li style="float:right"><a href="/dashboard/"> Dashboard </a></li>
+<nav class="navbar navbar-expand-sm bg-success navbar-dark sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="/static/images/ketraco_logo.jpg" width="40" height="40" class="d-inline-block align-top" alt="">
+      <span class="menu-collapsed"></span>
+    </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#NavbarResponsive">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="NavbarResponsive">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/dashboard/">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/login/">Login</a>
+      </li>
+    </ul>
+  </div>
+  </div>
+</nav>
 
-
-</ul>
-
-<br>
+</html>
 {% endblock %}

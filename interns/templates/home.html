@@ -7,56 +7,199 @@
 {% block content %}
 
 {% if user.is_authenticated %}
+<script js>
+// Hide submenus
+$('#body-row .collapse').collapse('hide');
 
-<!-- Sidebar -->
-  <div class="w3-sidebar w3-bar-block w3-gray" style="width: 15%" >
-  <img src="/static/images/Ketraco.png" style="width:100%">
-  <div class="w3-dropdown-hover">
-    <button class="w3-button">Training Materials <i class="fa fa-caret-down"></i></button>
-    <div class="w3-dropdown-content w3-bar-block">
-      <a href="#" class="w3-bar-item w3-button" style='color: #FA0319'>Video Tutorials</a>
-      <a href="#" class="w3-bar-item w3-button" style='color: #FA0319'>Documentations</a>
-    </div>
-  </div>
-    <a href="#" class="w3-bar-item w3-button">Reports</a>
-    <a href="#" class="w3-bar-item w3-button">Evaluation</a>
-  <a href="#" class="w3-bar-item w3-button">Deployment and Location</a>
-  <a href="#" class="w3-bar-item w3-button">Raise an Issue</a>
-  </div>
+// Collapse/Expand icon
+$('#collapse-icon').addClass('fa-angle-double-left');
 
-<!-- Page Content -->
-<div style="margin-left:15%" style='color: #FA0319' >
-<div class="w3-container w3-green">
-  <h1>KIAMS PORTAL</h1>
-  <div style='color: white' align = "right">  Welcome {{ user.username }}
-<br>
-  <a style='color: #FA0319' align = 'right' href="{% url 'interns:logout' %}">Sign Out</a>
-</div>
-</div>
+// Collapse click
+$('[data-toggle=sidebar-colapse]').click(function() {
+    SidebarCollapse();
+});
 
-<div class="w3-sidebar w3-bar-block w3-gray" style="width:100px;right:0" id="mySidebar">
-  <button class="w3-bar-item w3-button w3-hide-large"
-  onclick="w3_close()">Close &times;</button>
-  <a href="#" class="w3-bar-item w3-button">Contacts</a>
-</div>
+function SidebarCollapse () {
+    $('.menu-collapsed').toggleClass('d-none');
+    $('.sidebar-submenu').toggleClass('d-none');
+    $('.submenu-icon').toggleClass('d-none');
+    $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
 
+    // Treating d-flex/d-none on separators with title
+    var SeparatorTitle = $('.sidebar-separator-title');
+    if ( SeparatorTitle.hasClass('d-flex') ) {
+        SeparatorTitle.removeClass('d-flex');
+    } else {
+        SeparatorTitle.addClass('d-flex');
+    }
 
-
-</div>
-
-<script>
-function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
-}
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
+    // Collapse/Expand icon
+    $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
 }
 </script>
 
-<h1> News Feed </h1>
-<p> *Current Ketraco Projects </p>
-<p> *Recent Accomplishment </p>
-<p> *Updates </p>
+<!-- Bootstrap NavBar -->
+<nav class="navbar navbar-expand-sm bg-success navbar-dark">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">
+    <img src="/static/images/ketraco_logo.jpg" width="40" height="40" class="d-inline-block align-top" alt="">
+    <span class="menu-collapsed"></span>
+  </a>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a style='color: #FA0319' href="{% url 'interns:logout' %}">SIGN OUT</a>
+      </li>
+
+      <!-- This menu is hidden in bigger devices with d-sm-none.
+           The sidebar isn't proper for smaller screens imo, so this dropdown menu can keep all the useful sidebar itens exclusively for smaller screens  -->
+      <li class="nav-item dropdown d-sm-block d-md-none">
+        <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Menu
+        </a>
+        <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
+            <a class="dropdown-item" href="#">Electrical</a>
+            <a class="dropdown-item" href="#">Electrical</a>
+            <a class="dropdown-item" href="#">Civil</a>
+            <a class="dropdown-item" href="#">Reports</a>
+        </div>
+      </li><!-- Smaller devices menu END -->
+
+    </ul>
+  </div>
+</nav><!-- NavBar END -->
+
+
+<!-- Bootstrap row -->
+<div class="row" id="body-row">
+    <!-- Sidebar -->
+    <div id="sidebar-container" class="sidebar-expanded d-none d-md-block"><!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
+        <!-- Bootstrap List Group -->
+        <ul class="list-group">
+            <!-- Separator with title -->
+            <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                <small>TRAINING MATERIALS</small>
+            </li>
+            <!-- /END Separator -->
+            <!-- Menu with submenu -->
+            <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="menu-collapsed">ELETRICAL</span>
+                    <span class="submenu-icon ml-auto"></span>
+                </div>
+            </a>
+            <!-- Submenu content -->
+            <div id='submenu1' class="collapse sidebar-submenu">
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">Transmitions</span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">Substations</span>
+                </a>
+            </div>
+            <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+
+                    <span class="menu-collapsed">ELECTROMECHANICAL</span>
+                    <span class="submenu-icon ml-auto"></span>
+                </div>
+            </a>
+            <!-- Submenu content -->
+            <div id='submenu2' class="collapse sidebar-submenu">
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">Electromechanical</span>
+                </a>
+
+            </div>
+
+            <a href="#submenu3" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+
+                    <span class="menu-collapsed">CIVIL</span>
+                    <span class="submenu-icon ml-auto"></span>
+                </div>
+            </a>
+            <!-- Submenu content -->
+            <div id='submenu3' class="collapse sidebar-submenu">
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">Civil</span>
+                </a>
+
+            </div>
+
+            <!-- Separator with title -->
+            <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                <small>OTHER OPTIONS</small>
+            </li>
+            <!-- /END Separator -->
+            <a href="#" class="bg-dark list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+
+                    <span class="menu-collapsed">Reports <span class="badge badge-pill badge-primary ml-2"></span></span>
+                </div>
+            </a>
+
+            <a href="#" class="bg-dark list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+
+                    <span class="menu-collapsed">Safety</span>
+                </div>
+            </a>
+            <a href="#" class="bg-dark list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+
+                    <span class="menu-collapsed">Evaluation <span class="badge badge-pill badge-primary ml-2"></span></span>
+                </div>
+            </a>
+
+            <a href="#" class="bg-dark list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+
+                    <span class="menu-collapsed">Deplyoment and Location<span class="badge badge-pill badge-primary ml-2"></span></span>
+                </div>
+            </a>
+
+            <!-- Separator without title -->
+            <li class="list-group-item sidebar-separator menu-collapsed"></li>
+            <!-- /END Separator -->
+            <a href="#" class="bg-dark list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+
+                    <span class="menu-collapsed">Raise an Issue</span>
+                </div>
+            </a>
+
+
+        </ul><!-- List Group END-->
+    </div><!-- sidebar-container END -->
+
+    <!-- MAIN -->
+    <div class="col">
+
+        <h1>
+            KIAMS PORTAL
+            <small class="text-muted"></small>
+        </h1>
+
+
+        <div class="card">
+            <h4 class="card-header">News Feed</h4>
+            <div class="card-body">
+                <ul>
+                    <li>*Current Ketraco Projects</li>
+                    <li>*Recent Accomplishment</li>
+                    <li>*Updates</li>
+                </ul>
+            </div>
+        </div>
+
+
+
+    </div><!-- Main Col END -->
+
+</div><!-- body-row END -->
 
 <div class="w3-container">
 <p>Copyright © 2016 PDTP Secretariat- ICT Authority. All rights reserved.</p>
